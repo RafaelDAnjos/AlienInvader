@@ -80,7 +80,18 @@ def get_number_rows(game_config,spaceship_height,alien_height):
     number_rows = int(available_space_y / (2 * alien_height))
     return number_rows
 
-def update_aliens(aliens):
+def update_aliens(game_config,aliens):
+    check_fleet_edges(game_config,aliens)
     aliens.update()
 
 
+def check_fleet_edges(game_config,aliens):
+    for alien in aliens.sprites():
+        if alien.check_edges():
+            change_fleet_direction(game_config, aliens)
+            break
+
+def change_fleet_direction(game_config,aliens):
+    for alien in aliens.sprites():
+        alien.rect.y += game_config.fleet_drop_speed
+    game_config.fleet_direction *= -1
