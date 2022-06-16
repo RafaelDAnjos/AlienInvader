@@ -11,11 +11,14 @@ def run_game():
     spaceship = SpaceShip(screen,game_config)
     pygame.display.set_caption("Alien Invaders!")
     bullets = Group()
+    aliens = Group()
+    game_functions.create_fleet(game_config,screen,aliens,spaceship)
     while True:
         game_functions.check_events(game_config,screen,spaceship,bullets)
         spaceship.update()
         game_functions.update_bullets(bullets)
-        game_functions.update_screen(game_config,screen,spaceship,bullets)
+        game_functions.update_aliens(aliens)
+        game_functions.update_screen(game_config,screen,spaceship,bullets,aliens)
 
 
 run_game()
