@@ -16,7 +16,7 @@ def run_game():
     while True:
         game_functions.check_events(game_config,screen,spaceship,bullets)
         spaceship.update()
-        game_functions.update_bullets(bullets)
+        game_functions.update_bullets(bullets,aliens,screen,spaceship,game_config)
         game_functions.update_aliens(game_config,aliens)
         game_functions.update_screen(game_config,screen,spaceship,bullets,aliens)
 

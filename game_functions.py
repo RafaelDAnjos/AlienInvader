@@ -50,9 +50,13 @@ def erase_old_bullets(bullets):
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
 
-def update_bullets(bullets):
+def update_bullets(bullets,aliens,screen,spaceship,game_config):
     bullets.update()
     erase_old_bullets(bullets)
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True,True)
+    if len(aliens) ==0:
+        bullets.empty()
+        create_fleet(game_config,screen,aliens,spaceship)
 
 def create_fleet(game_config,screen,aliens,spaceship):
     alien = Alien(game_config, screen)
